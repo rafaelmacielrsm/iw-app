@@ -1,7 +1,7 @@
 class AddRolesToUsers < ActiveRecord::Migration[5.1]
   def up
     execute <<-SQL
-      CREATE TYPE roles as ENUM ('admin', 'member');
+      CREATE TYPE roles AS ENUM ('admin', 'member');
     SQL
 
     add_column :users, :role, :roles, default: 'member'
@@ -11,7 +11,7 @@ class AddRolesToUsers < ActiveRecord::Migration[5.1]
     remove_column :users, :role
 
     execute <<-SQL
-      DROP TYPE roles
+      DROP TYPE roles;
     SQL
   end
 end

@@ -3,6 +3,10 @@ FactoryBot.define do
     name 'Average Joe'
     email 'avjoe@foo.bar'
     password '12345678'
-    height 175
+    role 'member'
+
+    trait :admin do
+      role 'admin'
+    end
   end
 end
