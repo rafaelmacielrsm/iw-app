@@ -11,5 +11,7 @@ class User < ApplicationRecord
 
   validates :password, presence: true
 
-  enum role: { admin: 'admin' , member: 'member'}
+  validates :height, presence: true, numericality: { only_integer: true }
+
+  enum role: { admin: 'admin' , member: 'member' }
 end

@@ -12,17 +12,22 @@ RSpec.describe User, type: :model do
   it { expect( subject ).to respond_to( :password ) }
   it { expect( subject ).to respond_to( :encrypted_password ) }
   it { expect( subject ).to respond_to( :role ) }
+  it { expect( subject ).to respond_to( :height ) }
+  
   
 
   context "validations" do 
     it { expect( subject ).to validate_presence_of( :name ) }
-
+    
     it { should allow_value( 'foo@bar.xyz' ).for( :email ) }
     it { should_not allow_value( 'foo@' ).for( :email ) }
     it { expect( subject ).to validate_uniqueness_of( :email ).case_insensitive }
     
     it { expect( subject ).to validate_presence_of( :password ) }
     it { expect( subject ).to validate_confirmation_of( :password ) }      
+
+    it { expect( subject ).to validate_presence_of( :height ) }
+    it { expect( subject ).to validate_numericality_of( :height ).only_integer }
   end
 
   context "when the user is an admin" do
