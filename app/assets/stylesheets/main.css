@@ -1,0 +1,110 @@
+h1, h2, h3 {
+  text-align: center;
+  margin: 0;
+  padding: 1em 0;
+}
+
+p {
+  margin: 0;
+  padding: 1em 0;
+}
+
+img {
+  display: block;
+  border: 0;
+  width: 100%;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.8)  
+}
+
+.logo { 
+  text-align: center;
+  font-size: 8em; 
+}
+
+.site-title { margin-top: -1em; margin-bottom: 3em; }
+
+/* Section: Splash */
+
+.splash{ background: #fff6e5; padding-bottom: 2em; }
+
+.splash-content{ padding: 1.5em; }
+
+@media screen and (min-width: 1280px){
+   .splash-text {
+      columns: 2;
+      column-gap: 2em;
+   }
+
+   .splash-text p {
+      padding-top: 0;
+   }
+}
+
+.buckets {
+  display: flex;
+  justify-content: space-around;
+  padding: 2em 1em 1em;
+  background: #3e454c;
+}
+
+.buckets ul {
+  margin: 0;
+  padding: 0;
+}
+
+.buckets li {
+  margin-bottom: 1em;
+  background: white;
+  list-style-type: none;
+}
+
+
+.bucket { padding: 1em; }
+
+@media screen and (min-width: 1000px){
+  @supports (display: flex){
+
+     .buckets ul {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+     }
+
+     .buckets li {
+        width: 48%;
+     }
+  }
+}
+
+/* Section: More */
+
+.more { padding: 2em; }
+
+.more-content{ padding: 1.5em; }
+
+/* Section: Twins */
+
+.sidebar { background: hsl(0, 0%, 90%) }
+
+.twin {
+   padding: 2em;
+   background: #2185c5;
+   color: white;
+}
+
+.twin:last-of-type { background: #ff7f66; }
+
+/* Section: colophon */
+.colophon {
+   padding: 2em;
+   background: hsl(0, 0%, 10%);
+   color: white;
+   text-align: center;
+}
+
+.colophon a { color: white; }
+
+.colophon a:hover, 
+.colophon a:focus { 
+   border-bottom: 1px solid white;
+}
