@@ -17,11 +17,11 @@ ActiveRecord::Schema.define(version: 20180227171511) do
   enable_extension "pgcrypto"
 
   create_table "diets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "user_id"
-    t.date "starting_date"
-    t.date "ending_date"
-    t.integer "weight_goal"
-    t.integer "current_weight"
+    t.uuid "user_id", null: false
+    t.date "starting_date", null: false
+    t.date "ending_date", null: false
+    t.integer "weight_goal", null: false
+    t.integer "current_weight", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -7,14 +7,24 @@ RSpec.describe User, type: :model do
     expect( subject.id ).to match(/[a-f\d]{8}-([a-f\d]{4}-){3}[a-f\d]{12}/)
   end
 
-  it { expect( subject ).to respond_to( :name ) }
-  it { expect( subject ).to respond_to( :email ) }
-  it { expect( subject ).to respond_to( :password ) }
-  it { expect( subject ).to respond_to( :encrypted_password ) }
-  it { expect( subject ).to respond_to( :role ) }
-  it { expect( subject ).to respond_to( :height ) }
+  context 'attributes' do
+    it { expect( subject ).to respond_to( :name ) }
+    it { expect( subject ).to respond_to( :email ) }
+    it { expect( subject ).to respond_to( :password ) }
+    it { expect( subject ).to respond_to( :encrypted_password ) }
+    it { expect( subject ).to respond_to( :role ) }
+    it { expect( subject ).to respond_to( :height ) }
+  end
   
-  
+  context 'associations' do
+    let(:diet) { FactoryBot.create :diet, user: subject }
+    
+    it { expect( subject ).to have_many( :diets ) }
+
+    it 'should be able to access the diets through the association' do
+      expect( subject.diets ).to include( diet )
+    end    
+  end
 
   context "validations" do 
     it { expect( subject ).to validate_presence_of( :name ) }
