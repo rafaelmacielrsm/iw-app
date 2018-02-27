@@ -16,7 +16,7 @@ RSpec.describe Users::RegistrationsController, type: :controller do
         expect( User.last.email ).to eq( user_params[ :email ] )
       end
 
-      it { expect( response ).to redirect_to( profile_path ) }
+      it { expect( response ).to redirect_to( user_profile_path ) }
 
       it { expect( controller ).to set_flash[ :notice ].
         to( I18n.t( 'devise.registrations.signed_up' ))}

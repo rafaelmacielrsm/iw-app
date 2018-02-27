@@ -11,7 +11,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       @user.save
       sign_in @user
       flash[ :notice ] = I18n.t 'devise.registrations.signed_up'
-      redirect_to profile_path 
+      redirect_to user_profile_path 
     else
       flash[ :alert ] = I18n.t 'errors.messages.not_saved.one', resource: User
       render 'new'
