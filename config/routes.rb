@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  get 'home/index'
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  } 
+  
+  get '/profile', to: "user/dashboard#index"
 
-  devise_for :users
   root to: "home#index"
 end

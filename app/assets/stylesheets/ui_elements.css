@@ -1,0 +1,21 @@
+.floating-button {
+  position: fixed;
+  display: block;
+  top: 0;
+  right: 0;
+  background: linear-gradient(to right, #2185c5, #ff7f66);
+  margin: 1em;
+  width: 100px;
+  height: 60px;
+  border-radius: 15px;
+  box-shadow: 0 0 2px black;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-decoration: none;
+  color: white;
+  font-size: 1.25rem;
+}
+

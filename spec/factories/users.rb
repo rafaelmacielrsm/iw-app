@@ -1,10 +1,10 @@
 FactoryBot.define do
   factory :user do
-    name 'Average Joe'
-    email 'avjoe@foo.bar'
-    password '12345678'
+    name { FFaker::NameBR.name }
+    email { FFaker::Internet.safe_email }
+    password { FFaker::Internet.password }
     role 'member'
-    height 175
+    height { 140 + rand(60) }
 
     trait :admin do
       role 'admin'
