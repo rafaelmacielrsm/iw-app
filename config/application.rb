@@ -12,6 +12,7 @@ module IwApp
     config.load_defaults 5.1
 
     config.generators do |g|
+      g.orm :active_record, primary_key_type: :uuid
       g.view_specs    false
       g.helper_specs  false
       g.stylesheets   false

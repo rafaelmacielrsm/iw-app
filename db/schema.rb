@@ -10,11 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180226132232) do
+ActiveRecord::Schema.define(version: 20180227171511) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pgcrypto"
+
+  create_table "diets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id"
+    t.date "starting_date"
+    t.date "ending_date"
+    t.integer "weight_goal"
+    t.integer "current_weight"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 # Could not dump table "users" because of following StandardError
 #   Unknown type 'roles' for column 'role'
