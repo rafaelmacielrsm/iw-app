@@ -1,3 +1,4 @@
 //= require jquery
-//= require jquery_ujs
-//= require materialize
+//= require materialize.min
+//= require common-functions
+//= require jquery.mask.min
