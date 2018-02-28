@@ -5,10 +5,10 @@ class User::DietsController < ApplicationController
   include ActionView::Helpers::JavaScriptHelper
   
   before_action :authenticate_user!
-  before_action :set_user, only: [:new]
+  before_action :set_user, only: [:new, :show]
 
   def show
-
+    @diet = @user.diets.find(params[:id])
   end
 
   def new

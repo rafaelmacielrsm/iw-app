@@ -1,23 +1,33 @@
 <div class="spaced-elements content">
   <h4>Hello, <%= @user.name %></h4>
+  
   <a class="waves-effect waves-light btn">button</a>
 </div>
 
 <div class="content">
 
-  <% if @diets.nil?  %>    
+  <% if @current_diet.nil?  %>    
     <h4> You haven't start your diet yet, click 
       <%= link_to('here', new_user_diets_path ) %> to do it </h4>
   <% else %>
   <img src="http://via.placeholder.com/700x300" alt="Graph" class="content" style=
     "width: 100%">
-  <%= @current_diet.inspect %>
+    <%= @current_diet.inspect %>
   <% end %> 
   
-<%= paginate @diets %>
 </div>
+
 
 <div class="content">
   <p>Hey <%= @user.name %>, here's your progress, Keep going!</p>
 </div>
+
+<div class="spaced-elements content">
+  <%= link_to 'More Details', user_diets_path(id: @current_diet.id), 
+  class: "waves-effect waves-light btn" %>
+  
+  <%= paginate @diets %>
+</div>
+
+
 

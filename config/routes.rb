@@ -7,6 +7,6 @@ Rails.application.routes.draw do
 
   namespace :user, path: '/' do
     get '/profile', to: "dashboard#index", as: 'profile'
-    resource :diets, only: [:new, :create]
+    resource :diets, only: [:new, :create, :show]
   end
 end

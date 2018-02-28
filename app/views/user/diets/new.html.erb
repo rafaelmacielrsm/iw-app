@@ -1,4 +1,8 @@
-<h3 class="content" >Create a new diet</h3>
+<div class="spaced-elements content">
+  <h3>Create a new diet</h3>
+  <%= link_to "Back", user_profile_path, 
+    class: "waves-effect waves-light btn spaced-elements content" %>
+</div>
 
 <%= render 'form', resource: @user, object: @diet %>
 
