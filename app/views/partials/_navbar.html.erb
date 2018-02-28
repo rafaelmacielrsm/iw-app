@@ -1,9 +1,11 @@
 <nav id="nav-container">
 </nav>
-  <div id="nav-content">
-    <div>
-      <a href="#">Dashboard</a>
-      <a href="#">Diet Details</a>
-    </div>
-    <img src="http://via.placeholder.com/50x50" alt="The user profile image">  
-  </div>
+
+<nav id="nav-content">
+  <ul>
+    <li><%= link_to 'Dashboard', user_profile_path %></li>
+    <li><a href="#">Diet Details</a></li>
+  </ul>
+    
+  <img src="http://via.placeholder.com/50x50" alt="The user profile image">  
+</nav>
