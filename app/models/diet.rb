@@ -3,7 +3,7 @@ class Diet < ApplicationRecord
 
   validates :starting_date, presence: true
 
-  validates :ending_date, presence: true
+  validates :ending_date_before_type_cast, date: true
 
   validates :weight_goal, 
     presence: true, 
