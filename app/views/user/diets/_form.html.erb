@@ -1,0 +1,25 @@
+<%= form_for [resource, object], html: {class: 'content'} do |f| %>
+  <div class="input-field">
+    <%= f.text_field :weight_goal, autocomplete: 'off', class: 'weight', required: true %>
+    <%= f.label :weight_goal %>
+  </div>
+  <div class="input-field">
+    <%= f.text_field :current_weight, autocomplete: 'off', class: 'weight', required: true %>
+    <%= f.label :current_weight %>
+  </div>
+
+  <div class="input-field">
+    <%= f.text_field :starting_date, value: Date.today.to_formatted_s(:long),
+      disabled: true, required: true %>
+    <%= f.label :starting_date %>
+  </div>
+
+  <div class="input-field">
+    <%= f.text_field :ending_date, class: 'datepicker', required: true %>
+    <%= f.label :ending_date %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit class: 'btn' %>
+  </div>
+<% end %>

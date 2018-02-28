@@ -1,0 +1,15 @@
+<h3 class="content" >Create a new diet</h3>
+
+<%= render 'form', resource: @user, object: @diet %>
+
+<script>
+  $(document).ready(() => {
+    $('.weight').mask('000(kg) 000(g)',  {reverse: true});
+    
+    if ( $('.datepicker').length > 0 ) {
+      ( $('.datepicker').pickadate({
+        format: 'mmmm d, yyyy',
+      }) )
+    }
+  });
+</script>
