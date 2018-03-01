@@ -17,7 +17,7 @@ RSpec.describe Diet, type: :model do
     let( :diet_record ) { FactoryBot.create :diet, user: user }
 
     it { expect( subject ).to belong_to( :user )}
-    it { expect( subject ).to have_many( :diets_progress )}
+    it { expect( subject ).to have_many( :diet_progress )}
 
     it 'should be able to access the user through the association' do
       expect( diet_record.user ).to be( user )
