@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
+  layout 'app'
   include ActionView::Helpers::SanitizeHelper
   include ActionView::Helpers::JavaScriptHelper
 
