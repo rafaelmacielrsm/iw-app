@@ -1,24 +1,70 @@
-# README
+#1.  Setup the project
+## Prerequisites 
+- Postgresql db
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Steps
+- Clone the project and change to its directory
 
-Things you may want to cover:
+```shell
+git clone git@github.com:rafaelmacielrsm/iw-app.git
+```
+```shell
+cd iw-app
+```
 
-* Ruby version
+- Rename both database and secrets yaml config files
 
-* System dependencies
+```shell
+mv config/database.yml.example config/database.yml
+```
+```shell
+mv config/secrets.yml.example config/secrets.yml
+```
 
-* Configuration
+- Setup your database user and password, using your favoride editor, in the example i'm using visual code
 
-* Database creation
+```shell
+code config/database.yml
+```
+edit those lines:
 
-* Database initialization
+```yaml
+development:
+  <<: *default
+    username: <database_username>
+    password: <database_password>
+    database: iw-app_development
+  
+  # and
+  
+  test:
+  <<: *default
+    username: <database_username>
+    password: <database_password>
+    database: iw-app_test
+```
 
-* How to run the test suite
+- Install dependencies
 
-* Services (job queues, cache servers, search engines, etc.)
+```shell
+bundle install
+```
 
-* Deployment instructions
+- Create Databases and run migrations
 
-* ...
+```shell
+rake db:create && rake db:migrate RAILS_ENV=development && rake db:migrate RAILS_ENV=test 
+```
+
+- Run tests or launch the app
+
+```shell
+rspec -f d
+# or depending on your rails setup
+bundle exec rspec -f d
+#run server and visit http://localhost:3000
+rails s
+```
+
+
+
