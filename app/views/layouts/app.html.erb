@@ -17,6 +17,18 @@
     <% if notice || alert%>
     <p class="notice"><%= notice %></p>    
     <p class="alert"><%= alert %></p>
+    
   <% end %>   
+
+  <div class="fixed-action-btn">  
+    <% if user_signed_in? %>
+      <%= link_to(new_user_diet_path, 
+        class: "btn-floating btn-large waves-effect waves-light red" ) do %>
+      
+        <i class="material-icons">add</i>
+      <% end %>
+    <% end %>    
+  </div>
+   
   </body>
 </html>

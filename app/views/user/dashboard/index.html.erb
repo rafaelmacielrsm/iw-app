@@ -1,18 +1,23 @@
 <div class="spaced-elements content">
   <h4>Hello, <%= @user.name %></h4>
-  
-  <a class="waves-effect waves-light btn">button</a>
+
+  <% unless @current_diet.nil? %>
+    <a class="waves-effect waves-light btn modal-trigger" href="#modal1">
+      Register Weight
+    </a>    
+  <% end %>
 </div>
 
 <div class="content">
 
   <% if @current_diet.nil?  %>    
-    <h4> You haven't start your diet yet, click 
-      <%= link_to('here', new_user_diets_path ) %> to do it </h4>
+    <h4> You haven't start any diet yet, click     
+      <%= link_to('here', new_user_diet_path ) %> to do it </h4>
   <% else %>
-  <img src="http://via.placeholder.com/700x300" alt="Graph" class="content" style=
-    "width: 100%">
-    <%= @current_diet.inspect %>
+
+    <div>
+      <canvas id="chart_frame" width="100%" height="50"></canvas>
+    </div>
   <% end %> 
   
 </div>
@@ -22,12 +27,74 @@
   <p>Hey <%= @user.name %>, here's your progress, Keep going!</p>
 </div>
 
-<div class="spaced-elements content">
-  <%= link_to 'More Details', user_diets_path(id: @current_diet.id), 
-  class: "waves-effect waves-light btn" %>
+
+<% unless @current_diet.nil? %>
+  <div class="spaced-elements content">
+    <%= link_to 'More Details', user_diet_path(id: @current_diet.id), 
+    class: "waves-effect waves-light btn" %>
+    
+    <%= paginate @diets %>
+  </div>  
+<% end %>
+
+
+<% unless @current_diet.nil? %>
+  <div id="modal1" class="modal">
+    <div class="modal-content" style="height: 50vh;" >
+      <h4>Please inform your weight</h4>
+      <%= render(
+        partial: 'user/diet_progress/form', 
+        locals: { resource: @current_diet, object: @date_progress }
+      ) %>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" 
+        class="modal-action modal-close waves-effect waves-green btn-flat">
+        
+        Close
+      </a>
+    </div>
+  </div>
+
+<% end %>
+
+<script>
+  var chart_data = []
+  var goal = 0
+  var date_array = []
+
+  <% unless @current_diet.nil? %>      
+    var chart_data = <%= @chart_data[:weight_data] %>
+    var goal = <%= @chart_data[:goal] %>
+    var goal_data = chart_data.map( () => goal ) 
+    var date_array = <%= raw @chart_data[:date_array] %>
+
+    var min_y = Math.floor(Math.min(...chart_data, ...goal_data) - 1)
+    var max_y = Math.ceil(Math.max(...chart_data, ...goal_data) + 1)
+
+    chart = initLineChart(
+      "chart_frame", 
+      chart_data, 
+      "Weight", 
+      date_array, 
+      goal_data,
+      min_y,
+      max_y);
+  <% end %>
+
   
-  <%= paginate @diets %>
-</div>
+  $(document).ready(() => {
+    $('.modal').modal();
+    $('.weight').mask('000(kg) 000(g)',  {reverse: true});    
+
+    setAnotationPlugin()
+
+    if ( $('.datepicker').length > 0 ) {
+      ( $('.datepicker').pickadate({
+        format: 'mmmm d, yyyy',
+      }) )
+    }
+  });
 
 
-
+</script>

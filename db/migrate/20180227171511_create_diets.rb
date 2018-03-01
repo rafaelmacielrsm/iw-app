@@ -8,5 +8,7 @@ class CreateDiets < ActiveRecord::Migration[5.1]
       t.integer :current_weight, null: false
       t.timestamps
     end
+
+    add_index(:diets, :user_id)
   end
 end

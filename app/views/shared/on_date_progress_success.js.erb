@@ -1,0 +1,20 @@
+chart_data = <%= @weight_data %>;
+date_array = <%= raw @date_array %>;
+goal_data = chart_data.map( () => goal );
+
+chart.data.labels = <%= raw @date_array %>;
+chart.data.datasets[0].data = <%= @weight_data %>;
+chart.data.datasets[1].data = goal_data;
+
+chart.options.scales.yAxes[0].ticks.min = 
+  Math.floor(Math.min(...chart_data, goal) - 1);
+
+chart.options.scales.yAxes[0].ticks.max = 
+  Math.ceil(Math.max(...chart_data, goal) + 1);
+
+chart.update();
+
+Materialize.toast('Saved!', 4000);
+
+$('.modal').modal();
+

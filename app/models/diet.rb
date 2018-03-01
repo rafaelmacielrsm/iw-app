@@ -1,5 +1,6 @@
 class Diet < ApplicationRecord
   belongs_to :user
+  has_many :diet_progress, lambda { order( :weighing_date )}
 
   validates :starting_date, presence: true
 
@@ -12,4 +13,14 @@ class Diet < ApplicationRecord
   validates :current_weight, 
     presence: true, 
     numericality: { only_integer: true, greater_than: 0 }
+
+  after_create :save_first_progress
+
+  def save_first_progress
+    DietProgress.create({
+      diet: self, 
+      weight: self.current_weight, 
+      weighing_date: self.starting_date
+    })
+  end
 end

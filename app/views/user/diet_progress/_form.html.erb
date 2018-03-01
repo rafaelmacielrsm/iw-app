@@ -1,0 +1,19 @@
+<%= form_for [resource, object], 
+  url: user_diet_progress_path(resource.id), 
+  authenticity_token: true, 
+  remote: true do |f| %>
+
+  <div class="input-field">
+    <%= f.text_field :weight, autocomplete: 'off', class: 'weight', required: true %>
+    <%= f.label :weight %>
+  </div>
+
+  <div class="input-field">
+    <%= f.text_field :weighing_date, class: 'datepicker', required: true %>
+    <%= f.label :weighing_date %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Save Weight', class: 'btn' %>
+  </div>
+<% end %>

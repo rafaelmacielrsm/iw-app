@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'shared_examples/a_date_field_validation'
 
 RSpec.describe Diet, type: :model do
   let( :user ) { FactoryBot.create :user }
@@ -15,7 +16,8 @@ RSpec.describe Diet, type: :model do
   describe "associations" do
     let( :diet_record ) { FactoryBot.create :diet, user: user }
 
-    it { expect( subject ).to belong_to( :user ) }
+    it { expect( subject ).to belong_to( :user )}
+    it { expect( subject ).to have_many( :diets_progress )}
 
     it 'should be able to access the user through the association' do
       expect( diet_record.user ).to be( user )
@@ -32,18 +34,9 @@ RSpec.describe Diet, type: :model do
 
     it { expect( diet_object ).to validate_presence_of( :starting_date ) }
 
-    it 'should allow :ending_date to be a valid date string' do
-      should allow_value( valid_date_string ).for( :ending_date )
-    end
-
-    it 'should not allow :endind_date to be a invalid date string' do
-      should_not allow_value( 'invalid' ).for( :ending_date ).
-        with_message( 'is not a valid date' )
-    end
-    
-    it 'should not allow :ending_date to be an empty value' do
-      should_not allow_value( '' ).for( :ending_date ).
-        with_message( "can't be blank" )
+    include_examples "a date field validation", :ending_date do
+      let(:valid_date_string) { ( Date.today + 10.days ).to_s }
+      let(:invalid_string) { 'invalid' }
     end
      
     it { expect( diet_object ).to validate_presence_of( :weight_goal ) }

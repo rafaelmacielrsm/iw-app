@@ -19,7 +19,7 @@ RSpec.describe User, type: :model do
   context 'associations' do
     let(:diet) { FactoryBot.create :diet, user: subject }
     
-    it { expect( subject ).to have_many( :diets ) }
+    it { expect( subject ).to have_many( :diets ) }    
 
     it 'should be able to access the diets through the association' do
       expect( subject.diets ).to include( diet )

@@ -3,7 +3,7 @@ class DateValidator < ActiveModel::EachValidator
     attribute_name = attribute.to_s.gsub('_before_type_cast', '').to_sym
     
     begin 
-      Date.parse(value)
+      Date.parse(value) unless value.class == Date       
     rescue ArgumentError
       if value.empty?
         record.errors.add(attribute_name, "can't be blank") 

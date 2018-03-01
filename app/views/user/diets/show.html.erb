@@ -9,5 +9,16 @@
 
 
 <div class=content>
-  <%= @diet.inspect %>
+  <p>
+    <span style="font-weight: 600">Starting Date:</span>
+    <%= @diet.starting_date.strftime("%d/%m/%y") %>  
+  </p>
+  <p>
+    <span style="font-weight: 600">Enging Date:</span>
+    <%= @diet.ending_date.strftime("%d/%m/%y") %>  
+  </p>
+  <p>
+    <span style="font-weight: 600">Weight Goal:</span>
+    <%= "#{@diet.weight_goal / 1000} kg" %>  
+  </p>
 </div>
